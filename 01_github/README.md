@@ -40,5 +40,9 @@ This is the web address that your local folder will use to push its contents to 
 
 ``git push -u origin main``
 
+22. Use git pull to get the newest changes
+
+``git pull``
+
 **Streched tasks**
 1. Only if you finished early, try to understand and use "Fork" and PullRequest

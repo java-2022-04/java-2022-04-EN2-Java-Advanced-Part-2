@@ -1,0 +1,1 @@
+Explain the OOP concept Encapsulation using your own example implementation.
