@@ -52,9 +52,9 @@ public class Employee {
     public boolean isValid(String[] countries) {
         List<String> stringList = Arrays.asList(countries);
 
-
-
-        return stringList.contains(country) &&
+        return name != null &&
+                !name.isEmpty() &&
+                stringList.contains(country) &&
                 salary >= 10000;
     }
 }

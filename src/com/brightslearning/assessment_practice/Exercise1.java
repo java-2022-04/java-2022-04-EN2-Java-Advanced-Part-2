@@ -5,6 +5,8 @@ import com.brightslearning.assessment_practice.accounts.Account;
 import com.brightslearning.assessment_practice.accounts.Category;
 import com.brightslearning.assessment_practice.test.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -127,15 +129,40 @@ public class Exercise1 {
     }
 
     private static List<Account> findValidAccounts(List<Account> accountList) {
-        //TODO: 1c
+        // TODO: 1c with a for loop
+        List<Account> validAccounts = new ArrayList<>();
+        // this for loop is a bit nicer to read since it does not need to use any index variable like i
+        for (Account account : accountList) {
+            if (hasValidPassword(account)) {
+                validAccounts.add(account);
+            }
+        }
+        return validAccounts;
+    }
+
+    private static List<Account> findValidAccountsWithStreams(List<Account> accountList) {
         return accountList
                 .stream()
                 .filter(account -> hasValidPassword(account))
                 .collect(Collectors.toList());
     }
 
+
     private static List<Account> findValidAccountsByCategory(List<Account> accountList, Category cat) {
         //TODO: 1d
+        List<Account> validAccountsByCategory = new ArrayList<>();
+        List<Account> validAccounts = findValidAccounts(accountList);
+        for (Account validAccount : validAccounts) {
+            if (validAccount.getCategory().equals(cat)) {
+                validAccountsByCategory.add(validAccount);
+            }
+        }
+
+        Collections.sort(validAccountsByCategory);
+        return validAccountsByCategory;
+
+    }
+     private static List<Account> findValidAccountsByCategoryWithStreams(List<Account> accountList, Category cat) {
         return accountList
                 .stream()
                 .filter(account ->
