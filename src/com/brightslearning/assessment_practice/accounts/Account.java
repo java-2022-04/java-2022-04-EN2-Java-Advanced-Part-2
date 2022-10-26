@@ -1,6 +1,6 @@
 package com.brightslearning.assessment_practice.accounts;
 
-public class Account {
+public class Account implements Comparable<Account>{
     private final Category category;
     private final String password;
     private final String name;
@@ -30,5 +30,10 @@ public class Account {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Account o) {
+        return name.compareTo(o.getName());
     }
 }

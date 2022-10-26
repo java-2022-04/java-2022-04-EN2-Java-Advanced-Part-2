@@ -5,8 +5,8 @@ import com.brightslearning.assessment_practice.accounts.Account;
 import com.brightslearning.assessment_practice.accounts.Category;
 import com.brightslearning.assessment_practice.test.Test;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Exercise1 {
 
@@ -43,7 +43,7 @@ public class Exercise1 {
          */
 
         // Examples for valid accounts
-        Account facebook = new Account("Facebook","fAmouss77", Category.SOCIAL);
+        Account facebook = new Account("Facebook", "fAmouss77", Category.SOCIAL);
         Account crypto = new Account("Crypto.com", "crypTiC84", Category.BANKING);
         Account boe = new Account("Bank of England", "sEcret147", Category.BANKING);
         Account boa = new Account("Bank of Australia", "topSecret35", Category.BANKING);
@@ -72,8 +72,8 @@ public class Exercise1 {
          */
 
         // Example
-        List<Account> allAccounts = List.of(facebook,boe,vodafone,bon,o3,locals);
-        Test.equals(List.of(facebook,boe,vodafone), findValidAccounts(allAccounts));
+        List<Account> allAccounts = List.of(facebook, boe, vodafone, bon, o3, locals);
+        Test.equals(List.of(facebook, boe, vodafone), findValidAccounts(allAccounts));
 
         /*
         Exercise 1d: Implement the method findValidAccountsByCategory, which for given list of accounts
@@ -83,26 +83,65 @@ public class Exercise1 {
         The new list shall be ordered alphabetically (according to their name)
          */
         List<Account> larsAccounts = List.of(crypto, o3, boe, boa, bon, vodafone);
-        Test.equals(List.of(boa,boe,crypto), findValidAccountsByCategory(larsAccounts, Category.BANKING));
+        Test.equals(List.of(boa, boe, crypto), findValidAccountsByCategory(larsAccounts, Category.BANKING));
     }
 
     private static boolean isValidPassword(String password) {
-        //TODO: 1a
+        return password != null &&
+                password.length() >= 8 &&
+                Character.isLowerCase(password.charAt(0)) &&
+                containsAtLeastOneUpperCaseLetter(password) &&
+                endsWithANumberDividableBySeven(password);
+    }
+
+    private static boolean endsWithANumberDividableBySeven(String password) {
+        if (isLastCharacterADigit(password)) return false;
+
+        int i = password.length();
+        while (i > 0 && Character.isDigit(password.charAt(i - 1))) {
+            i--;
+        }
+        //System.out.println("password: " + password);
+        int trailingNumber = Integer.parseInt(password.substring(i));
+        //System.out.println("trailingNumber: " + trailingNumber);
+        return trailingNumber % 7 == 0;
+    }
+
+    private static boolean isLastCharacterADigit(String password) {
+        char lastChar = password.charAt(password.length() - 1);
+        if (!Character.isDigit(lastChar)) return true;
         return false;
     }
 
-    private static boolean hasValidPassword(Account a) {
-        //TODO: 1b
+    private static boolean containsAtLeastOneUpperCaseLetter(String password) {
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isUpperCase(password.charAt(i)))
+                return true;
+        }
         return false;
+    }
+
+    private static boolean hasValidPassword(Account account) {
+        //TODO: 1b
+        return isValidPassword(account.getPassword());
     }
 
     private static List<Account> findValidAccounts(List<Account> accountList) {
         //TODO: 1c
-        return new ArrayList<>();
+        return accountList
+                .stream()
+                .filter(account -> hasValidPassword(account))
+                .collect(Collectors.toList());
     }
 
     private static List<Account> findValidAccountsByCategory(List<Account> accountList, Category cat) {
         //TODO: 1d
-        return new ArrayList<>();
+        return accountList
+                .stream()
+                .filter(account ->
+                        account.getCategory().equals(cat) && hasValidPassword(account)
+                )
+                .sorted()
+                .collect(Collectors.toList());
     }
 }
