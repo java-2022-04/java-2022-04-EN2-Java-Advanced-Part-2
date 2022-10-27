@@ -17,14 +17,20 @@ abstract class Animal {
         myDog.speak();
         myDog.eat();
     }
+
 }
 
-public class Dog extends Animal {
+class Dog extends Animal {
+
     // ADD CODE HERE
 
-    public static void main(String[] args) {
-        Dog myDog = new Dog();
-        myDog.speak();
-        myDog.eat();
+    @Override
+    public void speak() {
+        System.out.println("speak as a dog");
+    }
+
+    @Override
+    public void eat() {
+
     }
 }

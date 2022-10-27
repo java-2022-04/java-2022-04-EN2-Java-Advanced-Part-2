@@ -5,6 +5,7 @@ package com.brightslearning.oop.exercise_10;
  * than the passed other and a negative number if they are younger.
  * If their age is the same then return the compareTo result on the names.
  */
+
 public class Person implements Comparable<Person> {
     private String name;
     private int age;
@@ -15,7 +16,7 @@ public class Person implements Comparable<Person> {
     }
 
     public int compareTo(Person other) {
-        // ADD CODE HERE
+        return 0;
     }
 
     public static void main(String[] args) {
@@ -31,3 +32,4 @@ public class Person implements Comparable<Person> {
         System.out.println(p4.compareTo(p5));
     }
 }
+

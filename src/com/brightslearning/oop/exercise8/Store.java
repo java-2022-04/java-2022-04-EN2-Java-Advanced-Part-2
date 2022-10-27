@@ -27,4 +27,11 @@ public class Store {
         System.out.println(myStore);
 
     }
+
+    private void setAddress(String s) {
+    }
+
+    private void setName(String s) {
+        
+    }
 }
