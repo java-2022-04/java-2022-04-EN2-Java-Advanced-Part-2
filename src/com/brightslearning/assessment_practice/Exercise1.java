@@ -12,6 +12,16 @@ import java.util.stream.Collectors;
 
 public class Exercise1 {
 
+    protected void protectedMethod() {
+
+    }
+
+    private void privateMethode() {}
+
+    void packagePrivateMethod(){
+
+    }
+
     public static void main(String[] args) {
         /*
         Exercise 1a: Implement the method isValidPassword, which checks, whether
@@ -88,7 +98,7 @@ public class Exercise1 {
         Test.equals(List.of(boa, boe, crypto), findValidAccountsByCategory(larsAccounts, Category.BANKING));
     }
 
-    private static boolean isValidPassword(String password) {
+    static boolean isValidPassword(String password) {
         return password != null &&
                 password.length() >= 8 &&
                 Character.isLowerCase(password.charAt(0)) &&
