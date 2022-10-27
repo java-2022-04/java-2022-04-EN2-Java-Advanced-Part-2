@@ -12,4 +12,6 @@
         * How is the error noticeable?
         * How can you re-run only the failed tests?
     * Bonus: Test with result greater than 3 billion, Test division by 0
-6. Explain test driven development in detail. 
+6. Refactor your Exercise1.isValidPassword method and create a new class PasswordChecker
+    * It should have the (non static) method isValidPassword in it (make sure everything still compiles and the tests within your exercise is still working)
+    * Implement a solution that allows you to see the reason for invalidity of the given password.  
